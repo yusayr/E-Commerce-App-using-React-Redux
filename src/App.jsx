@@ -9,6 +9,7 @@ import CartBar from './components/CartBar';
 import Signup from './pages/Signup';
 import Signin from './pages/Signin';
 import { auth } from './firebase';
+import { useLocation } from "react-router-dom";
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -28,14 +29,19 @@ function App() {
     return <div>Loading...</div>;
   }
 
+  const location = useLocation();
+
+  const hideNavbar = ["/signin", "/signup", "/"];
+  const showNavbar = currentUser && !hideNavbar.includes(location.pathname);
+
   return (
     <Router>
-      {currentUser && (
+      {showNavbar && (
         <>
           <Navbar
             selectedCategory={selectedCategory}
             setSelectedCategory={setSelectedCategory}
-            toggleCart={() => setIsCartOpen(prev => !prev)}
+            toggleCart={() => setIsCartOpen((prev) => !prev)}
           />
           <CartBar
             isOpen={isCartOpen}
@@ -43,6 +49,7 @@ function App() {
           />
         </>
       )}
+
       <Routes>
         <Route path="/" element={<Signin />} />
         <Route path="/signin" element={<Signin />} />
