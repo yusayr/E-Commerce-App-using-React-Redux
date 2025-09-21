@@ -79,7 +79,7 @@ function AppContent({ currentUser, selectedCategory, setSelectedCategory, isCart
           path="/myorders"
           element={currentUser ? <MyOrders /> : <Navigate to="/signin" replace />}
         />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<Navigate to="/signin" replace />} />
       </Routes>
     </>
   );
