@@ -4,16 +4,13 @@ function ProductDetails({ product, onClose }) {
     return (
         <div
             className="fixed inset-0 flex items-center justify-center z-50"
-            onClick={onClose} 
-        >
+            onClick={onClose}>
             <div
                 className="bg-white rounded-lg shadow-lg max-w-md w-full p-6 relative"
-                onClick={(e) => e.stopPropagation()} 
-            >
+                onClick={(e) => e.stopPropagation()}>
                 <button
                     onClick={onClose}
-                    className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
-                >
+                    className="absolute top-2 right-2 text-gray-500 hover:text-gray-700">
                     ✕
                 </button>
 
@@ -22,12 +19,15 @@ function ProductDetails({ product, onClose }) {
                 <img
                     src={product.images[0]}
                     alt={product.title}
-                    className="w-full max-h-80 object-contain rounded-md mb-4"
-                />
+                    className="w-full max-h-80 object-contain rounded-md mb-4"/>
 
                 <div className="text-lg font-semibold text-gray-900 mb-2">
                     ${product.price}
                 </div>
+
+                <h2 className="text-xl font-semibold text-gray-800 mb-2">
+                    {product.title}
+                </h2>
 
                 <p className="text-gray-600 text-sm">{product.description}</p>
             </div>

@@ -27,7 +27,6 @@ function Content({ selectedCategory, openCart }) {
             selectedCategory.toLowerCase()
         );
 
-  
   const searchFilteredItems =
     results !== null && results.trim() !== ""
       ? categoryFilteredItems.filter((product) =>
@@ -44,6 +43,7 @@ function Content({ selectedCategory, openCart }) {
               key={item.id}
               product={item}
               openCart={openCart}
+              onSelect={() => setSelectedProduct(item)} 
             />
           ))}
         </div>
