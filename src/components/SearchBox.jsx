@@ -7,7 +7,7 @@ export const SearchBox = () => {
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      dispatch(setResults(query.trim())); // Trigger search on Enter
+      dispatch(setResults(query.trim())); 
     }
   };
 

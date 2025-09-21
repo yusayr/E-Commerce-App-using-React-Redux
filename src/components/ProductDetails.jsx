@@ -8,7 +8,7 @@ function ProductDetails({ product, onClose }) {
         >
             <div
                 className="bg-white rounded-lg shadow-lg max-w-md w-full p-6 relative"
-                onClick={(e) => e.stopPropagation()} //To prevent event bubbling
+                onClick={(e) => e.stopPropagation()} 
             >
                 <button
                     onClick={onClose}
@@ -20,7 +20,7 @@ function ProductDetails({ product, onClose }) {
                 <h1 className="text-2xl font-bold mb-4">Detail</h1>
 
                 <img
-                    src={product.images?.[0]}
+                    src={product.images[0]}
                     alt={product.title}
                     className="w-full max-h-80 object-contain rounded-md mb-4"
                 />

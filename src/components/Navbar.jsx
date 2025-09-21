@@ -5,7 +5,7 @@ import { useState, useRef, useEffect } from "react";
 import { logout } from "../store/authSlice";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
-import { setCategory } from "../store/searchSlice"; // <-- Import action
+import { setCategory } from "../store/searchSlice"; 
 
 function Navbar({ selectedCategory, setSelectedCategory, toggleCart }) {
   const categories = ["All", "Clothes", "Electronics", "Furniture", "Miscellaneous"];
@@ -55,8 +55,8 @@ function Navbar({ selectedCategory, setSelectedCategory, toggleCart }) {
             <li
               key={category}
               onClick={() => {
-                dispatch(setCategory(category)); // Reset search and results
-                setSelectedCategory(category);   // Update selected category state
+                dispatch(setCategory(category)); 
+                setSelectedCategory(category);   
                 if (isOrdersActive) navigate("/home");
               }}
               className={`cursor-pointer hover:text-gray-900 relative pb-1 ${

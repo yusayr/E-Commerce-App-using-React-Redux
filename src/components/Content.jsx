@@ -7,7 +7,7 @@ import ProductDetails from "./ProductDetails";
 function Content({ selectedCategory, openCart }) {
   const dispatch = useDispatch();
   const { items, loading, error } = useSelector((state) => state.products);
-  const { results } = useSelector((state) => state.search); // ONLY use results
+  const { results } = useSelector((state) => state.search);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
@@ -16,8 +16,8 @@ function Content({ selectedCategory, openCart }) {
 
   if (loading) return <p>Loading products...</p>;
   if (error) return <p>Error: {error}</p>;
+  if (!items.length) return <p>No products available.</p>;
 
-  // 1️⃣ Filter by selected category
   const categoryFilteredItems =
     selectedCategory === "All"
       ? items
@@ -27,7 +27,7 @@ function Content({ selectedCategory, openCart }) {
             selectedCategory.toLowerCase()
         );
 
-  // 2️⃣ Filter by search results ONLY if Enter was pressed
+  
   const searchFilteredItems =
     results !== null && results.trim() !== ""
       ? categoryFilteredItems.filter((product) =>
@@ -39,10 +39,10 @@ function Content({ selectedCategory, openCart }) {
     <>
       {searchFilteredItems.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
-          {searchFilteredItems.map((product) => (
+          {searchFilteredItems.map((item) => (
             <ProductCard
-              key={product.id}
-              product={product}
+              key={item.id}
+              product={item}
               openCart={openCart}
             />
           ))}
