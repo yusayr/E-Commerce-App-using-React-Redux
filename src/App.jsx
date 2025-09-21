@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { HomePage } from './pages/HomePage';
 import Checkout from './pages/Checkout';
@@ -9,7 +9,6 @@ import CartBar from './components/CartBar';
 import Signup from './pages/Signup';
 import Signin from './pages/Signin';
 import { auth } from './firebase';
-import { useLocation } from "react-router-dom";
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -29,13 +28,27 @@ function App() {
     return <div>Loading...</div>;
   }
 
+  return (
+    <Router>
+      <AppContent
+        currentUser={currentUser}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+        isCartOpen={isCartOpen}
+        setIsCartOpen={setIsCartOpen}
+      />
+    </Router>
+  );
+}
+
+function AppContent({ currentUser, selectedCategory, setSelectedCategory, isCartOpen, setIsCartOpen }) {
   const location = useLocation();
 
   const hideNavbar = ["/signin", "/signup", "/"];
   const showNavbar = currentUser && !hideNavbar.includes(location.pathname);
 
   return (
-    <Router>
+    <>
       {showNavbar && (
         <>
           <Navbar
@@ -68,7 +81,7 @@ function App() {
         />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-    </Router>
+    </>
   );
 }
 
