@@ -21,8 +21,8 @@ function Navbar({ selectedCategory, setSelectedCategory, toggleCart }) {
   const isOrdersActive = location.pathname === "/MyOrders";
 
   useEffect(() => {
-    function handleClickOutside(event) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+    function handleClickOutside(e) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
         setOpenDropdown(false);
       }
     }
@@ -35,14 +35,14 @@ function Navbar({ selectedCategory, setSelectedCategory, toggleCart }) {
       await signOut(auth);
       dispatch(logout());
       navigate("/signin");
-    } catch (error) {
-      console.error("Logout failed:", error);
+    } catch (err) {
+      console.error(err);
     }
   };
 
   return (
     <div className="flex items-end justify-between px-4 md:px-6 py-3 md:py-4 bg-white border-b border-gray-400">
-      {/* Left */}
+      
       <div className="flex items-end space-x-4 md:space-x-6">
         <h1
           className="text-lg md:text-2xl font-bold text-gray-800 cursor-pointer"
@@ -72,7 +72,7 @@ function Navbar({ selectedCategory, setSelectedCategory, toggleCart }) {
         </ul>
       </div>
 
-      {/* Right */}
+      
       <div className="flex items-center space-x-3 md:space-x-6 text-gray-700 font-medium text-sm md:text-base">
         <span className="hidden md:inline text-sm md:text-base">
           userintheapp@test.com
